@@ -21,28 +21,25 @@ module.exports = {
         try {
             let user = await db.Person.findOneAndUpdate({
                 _id: req.params.id
-            }, { $set: req.body},
-                   /* firstName 
-                    lastName: req.body.lastName,
-                    phone: req.body.phone,
-                    profilePic: req.body. profilePic,
-                    state: req.body.state,
-                    city: req.body. city */ {
+            }, {
+                $set: req.body
+            }, {
                 new: true
-            }).body.body.b.body
+            });
             return res.status(200).json(user);
         } catch (err) {
             return next(err);
         }
     },
-    //get method to retrieve all users - for testing only, remove before deploying - tested
+};
+/* //get method to retrieve all users - for testing only, remove before deploying - tested
     findUsers: function (req, res) {
         db.Person
             .find({})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    /*  //the method to add a new user to Persons document
+    //the method to add a new user to Persons document
      addUser: function (req, res) {
          db.Person
              .create(req.body)
@@ -55,30 +52,29 @@ module.exports = {
                  res.status(422).json(err);
              });
      }, */
-    /* //this method to find a user based on the users id and update her/his info
-    updateUser: function (req, res) {
-        db.Person.findOneAndUpdate(
-            { _id: req.params.id },
-            { $set: req.body }
+/* //this method to find a user based on the users id and update her/his info
+updateUser: function (req, res) {
+    db.Person.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: req.body }
+    )
+        .then(dbModel => {
+            console.log(dbModel);
+            res.status(201).json(dbModel)
+        }
         )
-            .then(dbModel => {
-                console.log(dbModel);
-                res.status(201).json(dbModel)
-            }
-            )
-            .catch(err => res.status(422).json(err));
-    }, */
-    /* //the method to get a user's info based on his/her id
-    getUser: function (req, res) {
+        .catch(err => res.status(422).json(err));
+}, */
+/* //the method to get a user's info based on his/her id
+getUser: function (req, res) {
 
-        db.Person.findOne({ _id: req.params.id })
-            .populate('items')
-            .populate('wishlist')
-            .then(dbModel => {
-                console.log(dbModel);
-                res.status(201).json(dbModel)
-            }
-            )
-            .catch(err => res.status(422).json(err));
-    } */
-};
+    db.Person.findOne({ _id: req.params.id })
+        .populate('items')
+        .populate('wishlist')
+        .then(dbModel => {
+            console.log(dbModel);
+            res.status(201).json(dbModel)
+        }
+        )
+        .catch(err => res.status(422).json(err));
+} */
