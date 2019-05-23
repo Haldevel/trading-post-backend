@@ -61,7 +61,6 @@ module.exports = {
     //the method to update an item based on its id
     updateItem: async function (req, res, next) {
         try {
-            console.log("itemId" + req.params.itemId);
             let item = await db.Item.findOneAndUpdate({
                 _id: req.params.itemId
             }, {

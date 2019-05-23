@@ -1,15 +1,15 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const usersController = require("../controllers/usersController");
 
 
 // Matches with "/api/users"
-router.route("/")
+/* router.route("/")
     .get(usersController.findUsers)
-    .post(usersController.addUser);
+    .post(usersController.addUser); */
 
-// Matches with "/api/users/:id"
-router.route("/:id")
+// Matches with "/api/users/:id/"
+router.route("/")
     .get(usersController.getUser)
     .put(usersController.updateUser);
 
