@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 //protect add route to add item with middleware
 app.use('/api/items/:userId', loginRequired, ensureCorrectUser, itemRoutes);
-app.use('/api/users/:id', userRoutes);
+app.use('/api/users/:userId', loginRequired, ensureCorrectUser, userRoutes);
 
 //add the route for getting 12 latest items 
 app.get("/api/latest", async function(req, res, next) {

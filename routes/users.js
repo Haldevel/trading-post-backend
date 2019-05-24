@@ -8,7 +8,7 @@ const usersController = require("../controllers/usersController");
     .get(usersController.findUsers)
     .post(usersController.addUser); */
 
-// Matches with "/api/users/:id/"
+// Matches with "/api/users/:userId/"
 router.route("/")
     .get(usersController.getUser)
     .put(usersController.updateUser);

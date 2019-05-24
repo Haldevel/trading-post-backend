@@ -7,7 +7,7 @@ module.exports = {
         try {
             console.log("inside getUser " + req.params);
             let userInfo = await db.Person.findOne({
-                    _id: req.params.id
+                    _id: req.params.userId
                 })
                 .populate('items')
                 .populate('wishlist');
@@ -20,7 +20,7 @@ module.exports = {
     updateUser: async function (req, res, next) {
         try {
             let user = await db.Person.findOneAndUpdate({
-                _id: req.params.id
+                _id: req.params.userId
             }, {
                 $set: req.body
             }, {
