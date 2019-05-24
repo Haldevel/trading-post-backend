@@ -40,11 +40,16 @@ itemSchema.pre("remove", async function(next) {
   try {
     // find a user
     let person = await Person.findById(this._owner); //???
-    // remove the id of the message from their messages list using mongoose sync function
+    // remove the id of the item from their items list using mongoose sync function
     person.items.remove(this.id);
     // save that user
     await person.save();
-    // return next
+    //remove the item from all wishlists
+    const result1 = await Person.updateMany(
+      {  },
+      { $pull: { wishlist: { $in: [mongoose.Types.ObjectId(this.id)] } } },
+      { strict: false }
+    );
     return next();
   } catch (err) {
     return next(err);
@@ -54,3 +59,4 @@ itemSchema.pre("remove", async function(next) {
 var Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;
+

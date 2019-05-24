@@ -11,6 +11,7 @@ const {
     ensureCorrectUser
 } = require("./middleware/auth");
 const userRoutes = require("./routes/users.js");
+const wishlistRoutes = require("./routes/wishlist"); 
 
 const bodyParser = require("body-parser");
 
@@ -21,8 +22,8 @@ app.use(cors());
 
 
 /*
-const categoriesRoutes = require("./routes/categories");
-const wishlistRoutes = require("./routes/wishlist"); */
+const categoriesRoutes = require("./routes/categories");*/
+
 
 
 
@@ -32,6 +33,8 @@ app.use('/api/auth', authRoutes);
 //protect add route to add item with middleware
 app.use('/api/items/:userId', loginRequired, ensureCorrectUser, itemRoutes);
 app.use('/api/users/:userId', loginRequired, ensureCorrectUser, userRoutes);
+app.use('/api/wishlist/:userId',  loginRequired, ensureCorrectUser, wishlistRoutes);
+
 
 //add the route for getting 12 latest items 
 app.get("/api/latest", async function(req, res, next) {
