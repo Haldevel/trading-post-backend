@@ -33,7 +33,7 @@ var itemSchema = Schema({
   }
 }, { timestamps: true });
 
-itemSchema.index({title: 'text', category: 'text'});
+itemSchema.index({title: 'text', category: 'text'}, {weights: {title: 3, category: 1}});
 
 //hook before removing an item
 itemSchema.pre("remove", async function(next) {

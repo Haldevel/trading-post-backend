@@ -12,6 +12,7 @@ const {
 } = require("./middleware/auth");
 const userRoutes = require("./routes/users.js");
 const wishlistRoutes = require("./routes/wishlist"); 
+const categoriesRoutes = require("./routes/categories");
 
 const bodyParser = require("body-parser");
 
@@ -20,16 +21,11 @@ const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 
-
-/*
-const categoriesRoutes = require("./routes/categories");*/
-
-
-
-
 app.use(bodyParser.json());
 
+
 app.use('/api/auth', authRoutes);
+app.use('/api/search', categoriesRoutes);
 //protect add route to add item with middleware
 app.use('/api/items/:userId', loginRequired, ensureCorrectUser, itemRoutes);
 app.use('/api/users/:userId', loginRequired, ensureCorrectUser, userRoutes);
