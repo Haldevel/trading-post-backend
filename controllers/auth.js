@@ -5,7 +5,7 @@ exports.signin = async function (req, res, next) {
     // finding a user
     try {
         let person = await db.Person.findOne({
-            email: req.body.email  //check if we should use id? 
+            email: req.body.email  
         });
         let {
             _id,

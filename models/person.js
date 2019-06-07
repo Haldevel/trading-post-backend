@@ -34,7 +34,7 @@ const personSchema = Schema({
     profilePic: {
         type: String,
         trim: true,
-        default: "https://via.placeholder.com/150"
+        default: "https://www.sccpre.cat/mypng/detail/26-268559_profile-picture-placeholder-round.png"
     },
     city: {
         type: String,

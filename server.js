@@ -39,7 +39,8 @@ app.get("/api/latest", async function(req, res, next) {
         .sort({ createdAt: "desc" })
         .populate("_owner", {
             userName: true,
-            profilePic: true
+            profilePic: true,
+            email: true
           });
       return res.status(200).json(items);
     } catch (err) {
